@@ -310,5 +310,5 @@ body {
   vertical-align: baseline; }
 
 .blood-text {
-   color: #a23;
+   color: #a23 !important;
 }

@@ -1,0 +1,196 @@
+[
+    {
+        "Id": "d2bf5aaa43c145042bb90cddc7549d5893e470bdb08e7043fa9523976dfff557"                                                                                        ,
+        "Created": "2016-07-28T20:53:23.84073439Z",
+        "Path": "npm",
+        "Args": [
+            "start"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 38624,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2016-08-01T14:28:21.152760941Z",
+            "FinishedAt": "2016-08-01T08:43:47.676654141Z"
+        },
+        "Image": "sha256:d4e6bbced6a36a2c2d01d775714a73e6a64e8e3bbfc96efbfb5d254                                                                                        7bb051307",
+        "ResolvConfPath": "/var/lib/docker/containers/d2bf5aaa43c145042bb90cddc7                                                                                        549d5893e470bdb08e7043fa9523976dfff557/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/d2bf5aaa43c145042bb90cddc754                                                                                        9d5893e470bdb08e7043fa9523976dfff557/hostname",
+        "HostsPath": "/var/lib/docker/containers/d2bf5aaa43c145042bb90cddc7549d5                                                                                        893e470bdb08e7043fa9523976dfff557/hosts",
+        "LogPath": "/var/lib/docker/containers/d2bf5aaa43c145042bb90cddc7549d589                                                                                        3e470bdb08e7043fa9523976dfff557/d2bf5aaa43c145042bb90cddc7549d5893e470bdb08e7043                                                                                        fa9523976dfff557-json.log",
+        "Name": "/verifica",
+        "RestartCount": 0,
+        "Driver": "devicemapper",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "default",
+            "PortBindings": {
+                "3001/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "3001"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "CapAdd": null,
+            "CapDrop": null,
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "",
+            "Cgroup": "",
+            "Links": [
+                "/rabbit01:/verifica/rabbit01"
+            ],
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "runtime": "default",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DiskQuota": 0,
+            "KernelMemory": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": -1,
+            "OomKillDisable": false,
+            "PidsLimit": 0,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0
+        },
+        "GraphDriver": {
+            "Name": "devicemapper",
+            "Data": {
+                "DeviceId": "726",
+                "DeviceName": "docker-253:0-245680-c3f75fa6af98e0547c750b5ba4c38                                                                                        5a58df92d90ec8841fe45cd93026097b47a",
+                "DeviceSize": "10737418240"
+            }
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "d2bf5aaa43c1",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "3001/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/b                                                                                        in",
+                "NPM_CONFIG_LOGLEVEL=info",
+                "NODE_VERSION=4.4.7",
+                "DB=mongodb://verifica:123qweQWE@ds011419.mlab.com:11419/verific                                                                                        a-la",
+                "PORT=3001",
+                "QUEUE=amqp://rabbit01",
+                "DNS=187.84.225.4"
+            ],
+            "Cmd": [
+                "npm",
+                "start"
+            ],
+            "Image": "verifica",
+            "Volumes": null,
+            "WorkingDir": "/usr/src/app",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {}
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "ebee76769548dedbfb2ffdbc7a71eb776246b16072774511b57cce                                                                                        3d0c4d047b",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {
+                "3001/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "3001"
+                    }
+                ]
+            },
+            "SandboxKey": "/var/run/docker/netns/ebee76769548",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "80c3053abdb3112a6cf9a85d1b47393efebb8ed0f72367fa2fe62                                                                                        27b2ad579ec",
+            "Gateway": "172.17.0.1",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "172.17.0.3",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+            "MacAddress": "02:42:ac:11:00:03",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "c7f00b5978d82510059a474ad1495fe18988e7e3258418                                                                                        369e0da79b15b0327f",
+                    "EndpointID": "80c3053abdb3112a6cf9a85d1b47393efebb8ed0f7236                                                                                        7fa2fe6227b2ad579ec",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.3",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:11:00:03"
+                }
+            }
+        }
+    }
+]

@@ -1329,3 +1329,7 @@ html:-moz-full-screen-ancestor {
 
 .zoomed .reveal .roll span:after {
   visibility: hidden; }
+
+.linet {
+  text-decoration: line-through !important;
+}

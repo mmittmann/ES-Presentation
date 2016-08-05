@@ -5,15 +5,16 @@
     <title>Document</title>
     <link rel="stylesheet" href="./bower_components/reveal.js/css/reveal.css">
     <link rel="stylesheet" href="./bower_components/reveal.js/css/theme/blood.css">
+    <link rel="stylesheet" href="./bower_components/reveal.js/lib/css/zenburn.css">
 </head>
 <body>
      <div class="reveal">
             <div class="slides">
                 <section>
-                    <h2>ES6</h2>
+                    <h1 class="blood-text">ES6</h1>
                     <h3>JavaScript in the new world</h3>
                     <div>
-                        <img src="imgs/slide1.png" alt="">
+                        <img src="imgs/slide1.png" alt="flinstones">
                     </div>
                 </section>
 
@@ -79,7 +80,7 @@
                             Em 2007, o Yahoo através de Douglas Crockford uniu forças a Microsoft para inviabilizar o projeto, alegando que não havia contribuição relevante para a web, sugerindo que o nome fosse ES3.1
                         </li>
                         <li class="fragment fade-in">
-                            Em 2009, ambos se uniram e cancelaram tanto a ideia de ES3.1 ou ES4 e criaram o ES5, com o codinome ES Harmony
+                            Em 2009, ambos se uniram e cancelaram tanto a ideia de ES3.1 quanto de ES4 e criaram o ES5, com o codinome ES Harmony
                             *.*    
                         </li>
                     </ul>
@@ -135,12 +136,12 @@
                         <li class="fragment fade-in">JavaScript no servidor(Node)</li>
                         <li class="fragment fade-in">JavaScript no desenvolvimento mobile(Ionic, cordova...)</li>
                     </ul>
-                    <p class="fragment fade-in">Mas ainda sim, uma linguagem com seus problemas...</p>
+                    <p class="fragment fade-in">Mas ainda usamos uma linguagem "surpreendente"...</p>
                 </section>
 
                 <section>
                     <h2>ES6</h2>
-                    <h3>The future</h3>
+                    <h3>JS tomando jeito</h3>
                 </section>
 
                 <section>
@@ -155,6 +156,7 @@
                             <td>Edge 14</td>
                             <td>Safari 9+</td>
                             <td>Opera 39</td>
+                            <td>NodeJS v6</td>
                         </tr>
                         <tr class="blood-text">
                             <td>11%</td>
@@ -163,17 +165,335 @@
                             <td>95%</td>
                             <td>53%</td>
                             <td>97%</td>
+                            <td>98%</td>
                         </tr>
                     </table>
                 </section>
+
+                <section>
+                    <h3>O problema?</h3>
+                    <h2 class="blood-text">Callback hell!</h2>
+
+                    <pre><code class="hljs" data-trim contenteditable>
+var operacao1 = function(callback){
+    window.setTimeout(function(){
+        console.log('terminou a operacao 1');
+        if(callback) callback();
+    }, 1000);
+}
+
+var operacao2 = function(callback){
+    window.setTimeout(function(){
+        console.log('terminou a operacao 2');
+        if(callback) callback();
+    }, 2000);
+}
+
+var operacao3 = function(callback){
+    window.setTimeout(function(){
+        console.log('terminou a operacao 3');
+        if(callback) callback();
+    }, 3000);
+}
+
+//a chamada
+operacao1(operacao2(operacao3));
+
+//OU 
+
+operacao1(function(){
+    console.alert('executei o callback');
+    operacao2(function(){
+        console.alert('executei o callback');
+        operacao3(function(){
+            console.alert('executei o callback');
+            ...
+        })
+    })
+})
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>A solução:</h3>
+                    <h2 class="blood-text">Promises!</h2>
+
+                    <pre><code class="hljs" data-trim contenteditable>
+var operacao1 = function(){
+    return new Promise((resolve, reject) => {
+        window.setTimeout(function(){
+            console.log('terminou a operacao 1');
+            resolve();
+        }, 1000);
+    })
+}
+
+var operacao2 = function(){
+    return new Promise((resolve, reject) => {
+        window.setTimeout(function(){
+            console.log('terminou a operacao 2');
+            resolve();
+        }, 2000);
+    })
+}
+
+var operacao3 = function(){
+    return new Promise((resolve, reject) => {
+        window.setTimeout(function(){
+            console.log('terminou a operacao 3');
+            resolve();
+        }, 3000);
+    })
+}
+
+var operacao4 = function(){
+    return new Promise((resolve, reject) => {
+        window.setTimeout(function(){
+            console.log('terminou a operacao 4');
+            resolve();
+        }, 4000);
+    })
+}
+
+var operacao5 = function(){
+    return new Promise((resolve, reject) => {
+        window.setTimeout(function(){
+            console.log('terminou a operacao 5');
+            resolve();
+        }, 5000);
+    })
+}
+
+//chamada
+operacao1()
+.then(operacao2())
+.then(operacao3())
+.then(operacao4())
+.then(operacao5());
+                    </code></pre>
+
+                </section>
+
+                <section>
+                    <h3>O problema?</h3>
+                    <h2 class="blood-text">Hoisting e escopo!</h2>
+                        Escopo em C
+                        <pre><code class="hljs" data-trim contenteditable>
+#include <stdio.h>
+
+int main() {
+  int a = 1;
+  printf("%d\n", a); //=> 1
+
+  if (1) {
+    int a = 2;
+    printf("%d\n", a); //=> 2
+  }
+
+  printf("%d\n", a); //=> 1
+}
+                        </code></pre>
+                </section>
+
+                <section>
+                    <h3>O problema?</h3>
+                    <h2 class="blood-text">Hoisting e escopo!</h2>
+                    <p>Escopo no JS </p>
+                        <pre><code class="hljs" data-trim contenteditable>
+var teste = function(){
+    var a = 1
+    console.log(a) //=> 1
+
+    if (true) {
+        var a = 2
+        console.log(a) //=> 2
+    }
+
+    console.log(a) //=> 2
+}
+                        </code></pre>
+                </section>
+
+                <section>
+                        <h3>A solução</h3>
+                        <h2 class="linet">Funções de invocação imediata</h2>
+                        <p>E é pq é</p>
+                    <pre><code class="hljs" data-trim contenteditable>
+var teste = function(){
+    var a = 1
+    console.log(a) //=> 1
+
+    if (true) {
+        (function() {
+            var a = 2
+            console.log(a) //=> 2
+        }())
+    }
+
+    console.log(a) //=> 1
+}
+
+                    </code></pre>                    
+                </section>
+
+                <section>
+                    <h3>A solução</h3>
+                    <h2 class="blood-text">"let" e "const"</h2>
+                    <pre><code class="hljs" data-trim contenteditable>
+var teste = function(){
+    let a = 1
+    console.log(a) //=> 1
+
+    if (true) {
+        let a = 2
+        console.log(a) //=> 2
+    }
+
+    console.log(a) //=> 1
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                     <h3>O problema?</h3>
+                    <h3 class="blood-text">This lexico e a palavra "function"!</h3>
+
+                    <pre><code class="hljs" data-trim contenteditable>
+'use strict'
+var nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var pares = [];
+this.nums.forEach(function (n) {
+    if (n % 5 === 0)
+        this.pares.push(n);
+});
+                    </code></pre>
+                    
+                </section>
+                <section>
+                     <h3>A solução:</h3>
+                    <h3 class="blood-text">Arrow functions () =></h3>
+
+                    <pre><code class="hljs" data-trim contenteditable>
+'use strict'
+var nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var pares = [];
+this.nums.forEach((n) => { if (n % 2 === 0) this.pares.push(n) });
+                    </code></pre>
+                    
+                </section>    
+
+                <section>
+                     <h3>O problema?</h3>
+                    <h3 class="blood-text">Função construtora, prototype, WTF?</h3>
+
+                    <pre><code class="hljs" data-trim contenteditable>
+var Serumaninho = function(nome){
+    this.nome = nome;
+}
+
+Serumaninho.prototype.diga = function(){
+    console.log('Olá, sou o ' + this.nome);
+}
+
+var Jorge = function(thatsCameFrom){
+    this.thatsCameFrom = thatsCameFrom;
+    this.nome = 'Jorge da ' + this.thatsCameFrom;
+}
+
+Jorge.prototype = Serumaninho.prototype;
+
+var j = new Jorge('Capadócia');
+j.diga();
+                    </code></pre>
+                    
+                </section>
+                <section>
+                     <h3>A solução:</h3>
+                    <h2 class="blood-text">Classes</h2>
+
+                    <pre><code class="hljs" data-trim contenteditable>
+class Serumaninho {
+    constructor (nome) {
+        this.nome = nome;
+    }
+
+    diga(){
+        console.log(this.nome);
+    }
+}
+
+class Jorge extends Serumaninho {
+    constructor (thatsCameFrom) {
+        super('Olá, sou o Jorge da ' + thatsCameFrom);
+    }
+}
+                    </code></pre>
+                </section>   
+                <section>
+                    <h3>Tudo isso e muito mais:</h3>
+                    <ul>
+                        <li>
+                            <a href="http://es6-features.org/#Constants">Tabela de features</a>
+                        </li>
+                        <li>
+                            <a href="http://kangax.github.io/compat-table/es6/">Tabela de compatibilidade completa</a>
+                        </li>
+                        <li>
+                            <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide">MDN</a>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h4>Beleza, mas eu uso o IE, vou aproveitar só 11% das features?</h4>
+                    <h3 class="fragment fade-in">Não!</h3>
+                    <img class="fragment fade-in" src="https://media.giphy.com/media/eKDp7xvUdbCrC/giphy.gif" alt="the office">
+                </section>
+                <section>
+                    <h2><img src="https://raw.githubusercontent.com/babel/logo/master/babel.png" alt=""></h2>
+                    <h4>Use next generation JavaScript, today.</h4>
+                </section>
+                <section>
+                    <h4>O Babel é:</h4>
+                    <p>Um compilador de código para a web</p>
+                    <h4>O Babel é muito usado:</h4>
+                    <p>Para transformar códigos JS muito loucos em JSs que o browser do tio da padaria consegue executar</p>
+                    <h4>Eu instalo o babel com npm assim:</h4>
+                    <p>npm install --save-dev babel-preset-es2015</p>
+                    <p class="blood-text">Existem presets para compilar outros códigos também, como do react, por exemplo</p>
+                    <h4>Utilizo através de um command line:</h4>
+                    <p>babel script.js --out-file script-compiled.js</p>
+                </section>
+
+                <section>
+                    <h2>Hands on de Node com ES6</h2>
+                </section>
+
+                <section>
+                    <h1 class="blood-text">Beleza?</h1>
+                    <p>Começamos a usar amanhã TRL?</p>
+                </section>
+
             </div>
         </div>
 
-
+    <script src="./bower_components/reveal.js/lib/js/head.min.js"></script>
     <script src="./bower_components/reveal.js/js/reveal.js"></script>
+    
     <script>
-        Reveal.initialize();
-        Reveal.configure({ backgroundTransition: 'zoom' })
+        Reveal.initialize({
+            dependencies: [
+					{ src: './bower_components/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: './bower_components/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: './bower_components/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: './bower_components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: './bower_components/reveal.js/plugin/zoom-js/zoom.js', async: true },
+					{ src: './bower_components/reveal.js/plugin/notes/notes.js', async: true }
+				] 
+        });
+        Reveal.configure({ 
+            backgroundTransition: 'zoom'
+            });
+        
     </script>
 </body>
 </html>
